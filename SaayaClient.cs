@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using Saaya.Wrapper.Model;
-using Saaya.Wrapper.Services;
 using RestSharp;
 using Newtonsoft.Json;
 
@@ -9,7 +8,6 @@ namespace Saaya.Wrapper
     public class SaayaClient : ISaayaClient
     {
         private RestClient _rest;
-        private readonly JsonHandler _json;
         private readonly CancellationTokenSource CancellationTokenSource;
 
         private const string BaseUrl = "https://aisys.dev/api/saaya";
@@ -19,7 +17,6 @@ namespace Saaya.Wrapper
         public SaayaClient()
         {
             _rest = new RestClient();
-            _json = new JsonHandler();
             CancellationTokenSource = new CancellationTokenSource();
         }
 

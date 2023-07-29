@@ -25,10 +25,10 @@ namespace Saaya.Wrapper
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Response"></exception>
-        public IEnumerable<Song> GetSongs()
-        {
-            throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
-        }
+        //public IEnumerable<Song> GetSongs()
+        //{
+        //    throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
+        //}
 
         /// <summary>
         /// Returns all songs by device ID.
@@ -59,6 +59,17 @@ namespace Saaya.Wrapper
         /// <exception cref="Response"></exception>
         public async Task<IEnumerable<Song>> GetSongsForPlaylist(string playlistId)
         {
+            RestRequest Request = new RestRequest($"{Playlists}/songs", Method.Get);
+            Request.AddParameter("id", playlistId);
+
+            RestResponse Response = await _rest.ExecuteAsync(Request);
+
+            if (Response.IsSuccessStatusCode)
+            {
+                List<Song> songs = JsonConvert.DeserializeObject<List<Song>>(Response.Content);
+                return songs;
+            }
+
             return new List<Song>();
         }
 
@@ -68,10 +79,10 @@ namespace Saaya.Wrapper
         /// <param name="playlistId"></param>
         /// <returns></returns>
         /// <exception cref="Response"></exception>
-        public IEnumerable<Playlist> GetPlaylists()
-        {
-            throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
-        }
+        //public IEnumerable<Playlist> GetPlaylists()
+        //{
+        //    throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
+        //}
 
         /// <summary>
         /// Returns all playlists by device ID.
@@ -80,7 +91,18 @@ namespace Saaya.Wrapper
         /// <returns></returns>
         public async Task<IEnumerable<Playlist>> GetPlaylistForDevice(string deviceId)
         {
-            throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
+            RestRequest Request = new RestRequest($"{Playlists}/device", Method.Get);
+            Request.AddParameter("id", deviceId);
+
+            RestResponse Response = await _rest.ExecuteAsync(Request);
+
+            if (Response.IsSuccessStatusCode)
+            {
+                List<Playlist> playlists = JsonConvert.DeserializeObject<List<Playlist>>(Response.Content);
+                return playlists;
+            }
+
+            return new List<Playlist>();
         }
 
         /// <summary>
@@ -89,19 +111,19 @@ namespace Saaya.Wrapper
         /// <param name="playlistLink"></param>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public async Task AddPlaylist(string playlistLink, string deviceId)
-        {
-            //var uri = $"https://aisys.dev/saaya/playlists/";
-            //var postUri = $"/add?link={playlistLink}&device={deviceId}";
+        //public async Task AddPlaylist(string playlistLink, string deviceId)
+        //{
+        //    //var uri = $"https://aisys.dev/saaya/playlists/";
+        //    //var postUri = $"/add?link={playlistLink}&device={deviceId}";
 
-            //_rest = new RestClient(uri);
-            //var request = new RestRequest(postUri);
+        //    //_rest = new RestClient(uri);
+        //    //var request = new RestRequest(postUri);
 
-            //var response = await _rest.ExecutePostAsync(request);
+        //    //var response = await _rest.ExecutePostAsync(request);
 
-            //if (!(response.IsSuccessStatusCode))
-            //    return;
-            throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
-        }
+        //    //if (!(response.IsSuccessStatusCode))
+        //    //    return;
+        //    throw new Response() { ResponseCode = 600, ResponseContent = "Endpoint not found" };
+        //}
     }
 }

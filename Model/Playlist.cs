@@ -6,10 +6,11 @@ namespace Saaya.Wrapper.Model
     public class Playlist
     {
         [Key]
-        public string PlaylistId { get; set; }
+        public int Id { get; set; }
 
-        public string? PlaylistName { get; set; }
+        [Required]
+        public string Name { get; set; }
 
-        public string? DeviceId { get; set; }
+        public long DateCreated { get; set; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
     }
 }

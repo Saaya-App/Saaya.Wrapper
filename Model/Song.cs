@@ -8,18 +8,21 @@ namespace Saaya.Wrapper.Model
         [Key]
         public int Id { get; set; }
 
-        public string? Thumbnail { get; set; }
+        [Required]
+        public string Thumbnail { get; set; }
 
-        public string? Title { get; set; }
+        [Required]
+        public string Title { get; set; }
 
-        public string? Author { get; set; }
+        [Required]
+        public string Author { get; set; }
 
-        public TimeSpan? Length { get; set; }
+        [Required]
+        public TimeSpan Length { get; set; }
 
-        public string? Link { get; set; }
+        [Required]
+        public string Url { get; set; }
 
-        public string? PlaylistId { get; set; }
-
-        public string? DeviceId { get; set; }
+        public long DateCreated { get; set; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
     }
 }

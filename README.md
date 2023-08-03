@@ -4,7 +4,8 @@ API wrapper for Saaya app's API.
 
 ---
 
-Fetching songs for user ("token" input). (Outputs a List<Song>)
+Examples:
+
 ```cs
 using Saaya.Wrapper;
 
@@ -20,5 +21,13 @@ public MyClass()
 public async Task GetSongs()
 {
 	var songs = await saaya.GetSongsAsync("token");
+	// Consume the songs
+}
+
+public async Task GetPlaylistSongs()
+{
+	// Playlist ID: 3
+	var songs = await saaya.GetSongsAsync("token", 3);
+	// Consume the songs
 }
 ```

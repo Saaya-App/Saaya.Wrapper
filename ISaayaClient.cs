@@ -8,7 +8,7 @@ namespace Saaya.Wrapper
         /// Returns all songs for user.
         /// </summary>
         /// <param name="token">User token.</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains an <see cref="IEnumerable{T}"/> of <see cref="Song"/> objects.</returns>
         Task<IEnumerable<Song>> GetSongsAsync(string token);
 
         /// <summary>
@@ -16,15 +16,14 @@ namespace Saaya.Wrapper
         /// </summary>
         /// <param name="token">User token.</param>
         /// <param name="playlistId">Playlist ID, integer.</param>
-        /// <returns></returns>
-        /// <exception cref="Response"></exception>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains an <see cref="IEnumerable{T}"/> of <see cref="Song"/> objects.</returns>
         Task<IEnumerable<Song>> GetSongsForPlaylist(string token, string playlistId);
 
         /// <summary>
         /// Returns all playlist for user.
         /// </summary>
         /// <param name="token">User token.</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains an <see cref="IEnumerable{T}"/> of <see cref="Playlist"/> objects.</returns>
         Task<IEnumerable<Playlist>> GetPlaylistsAsync(string token);
     }
 }

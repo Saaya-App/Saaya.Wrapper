@@ -1,20 +1,30 @@
 ﻿using Saaya.Wrapper.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Saaya.Wrapper
 {
     public interface ISaayaClient
     {
-        //IEnumerable<Song> GetSongs();
-        Task<IEnumerable<Song>> GetSongsForDevice(string deviceId);
-        Task<IEnumerable<Song>> GetSongsForPlaylist(string playlistId);
+        /// <summary>
+        /// Returns all songs for user.
+        /// </summary>
+        /// <param name="token">User token.</param>
+        /// <returns></returns>
+        Task<IEnumerable<Song>> GetSongsAsync(string token);
 
-        //IEnumerable<Playlist> GetPlaylists();
-        Task<IEnumerable<Playlist>> GetPlaylistForDevice(string deviceId);
-        //Task AddPlaylist(string playlistLink, string deviceId);
+        /// <summary>
+        /// Returns songs by playlist ID.
+        /// </summary>
+        /// <param name="token">User token.</param>
+        /// <param name="playlistId">Playlist ID, integer.</param>
+        /// <returns></returns>
+        /// <exception cref="Response"></exception>
+        Task<IEnumerable<Song>> GetSongsForPlaylist(string token, string playlistId);
+
+        /// <summary>
+        /// Returns all playlist for user.
+        /// </summary>
+        /// <param name="token">User token.</param>
+        /// <returns></returns>
+        Task<IEnumerable<Playlist>> GetPlaylistsAsync(string token);
     }
 }

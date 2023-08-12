@@ -64,5 +64,20 @@ namespace Saaya.Wrapper
 
             return new List<Playlist>();
         }
+
+        public async Task<IEnumerable<Info>> GetNewsAsync(string platform)
+        {
+            RestRequest Request = new RestRequest($"https://api.saaya.dev/news", Method.Get);
+
+            RestResponse Response = await _rest.ExecuteAsync(Request);
+
+            if (Response.IsSuccessStatusCode)
+            {
+                List<Info> news = JsonConvert.DeserializeObject<List<Info>>(Response.Content);
+                return news;
+            }
+
+            return new List<Info>();
+        }
     }
 }

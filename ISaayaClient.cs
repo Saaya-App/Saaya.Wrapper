@@ -25,5 +25,12 @@ namespace Saaya.Wrapper
         /// <param name="token">User token.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains an <see cref="IEnumerable{T}"/> of <see cref="Playlist"/> objects.</returns>
         Task<IEnumerable<Playlist>> GetPlaylistsAsync(string token);
+
+        /// <summary>
+        /// Returns news for the specified platform.
+        /// </summary>
+        /// <param name="platform">The platform for which to get news.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains an <see cref="IEnumerable{T}"/> of <see cref="Info"/> objects.</returns>
+        Task<IEnumerable<Info>> GetNewsAsync(string? platform);
     }
 }

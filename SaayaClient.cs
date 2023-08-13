@@ -65,7 +65,7 @@ namespace Saaya.Wrapper
             return new List<Playlist>();
         }
 
-        public async Task<User> GetProfileAsync(string token)
+        public async Task<(User user, bool IsSuccess)> GetProfileAsync(string token)
         {
             RestRequest Request = new RestRequest($"https://api.saaya.dev/users/me", Method.Get);
             Request.AddHeader("Authorization", $"Bearer {token}");
@@ -75,10 +75,10 @@ namespace Saaya.Wrapper
             if (Response.IsSuccessStatusCode)
             {
                 User user = JsonConvert.DeserializeObject<User>(Response.Content);
-                return user;
+                return (user, true);
             }
 
-            return new User();
+            return (new User(), false);
         }
 
         public async Task<IEnumerable<Info>> GetNewsAsync(string platform)

@@ -27,6 +27,13 @@ namespace Saaya.Wrapper
         Task<IEnumerable<Playlist>> GetPlaylistsAsync(string token);
 
         /// <summary>
+        /// Returns user profile information.
+        /// </summary>
+        /// <param name="token">User token.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation. The result of the task contains a tuple where the first element is a <see cref="User"/> object and the second element is a <see cref="bool"/> indicating if the operation was successful.</returns>
+        Task<(User user, bool IsSuccess)> GetProfileAsync(string token);
+
+        /// <summary>
         /// Returns news for the specified platform.
         /// </summary>
         /// <param name="platform">The platform for which to get news.</param>

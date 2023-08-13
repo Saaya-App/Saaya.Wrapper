@@ -65,6 +65,22 @@ namespace Saaya.Wrapper
             return new List<Playlist>();
         }
 
+        public async Task<User> GetProfileAsync(string token)
+        {
+            RestRequest Request = new RestRequest($"https://api.saaya.dev/users/me", Method.Get);
+            Request.AddHeader("Authorization", $"Bearer {token}");
+
+            RestResponse Response = await _rest.ExecuteAsync(Request);
+
+            if (Response.IsSuccessStatusCode)
+            {
+                User user = JsonConvert.DeserializeObject<User>(Response.Content);
+                return user;
+            }
+
+            return new User();
+        }
+
         public async Task<IEnumerable<Info>> GetNewsAsync(string platform)
         {
             RestRequest Request = new RestRequest($"https://api.saaya.dev/news", Method.Get);
